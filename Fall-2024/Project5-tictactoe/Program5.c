@@ -234,6 +234,7 @@ int main(void) {
   printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
   draw_board_options();
   draw_board(check_if_win());
+  printf("This is a test in order to try committing changes to git!");
 
   return 0;
 }
