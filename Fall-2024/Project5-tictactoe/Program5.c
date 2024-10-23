@@ -1,4 +1,15 @@
-/* C program by Dave Russillo. Made for CS1310. TicTacToe */
+/* C program by Dave Russillo. Made for CS1310. TicTacToe.
+ *           _                      _
+ *          | |                    | |
+ *         / /                     \ \
+ *        /  \____             ____/  \
+ *   ____/   (|____)          (____|)  \____
+ *  |   |   (|_____)          (_____|) |    |
+ *  |   |    (|____)          (____|)  |    |
+ *  |___|_____(|___)          (___|)___|____|
+ *
+ */
+
 #include <stdio.h>
 
 char ttt[3][3];
@@ -189,8 +200,10 @@ void take_turn(void) {
 
 
 void reassign_player(void) {
-  if(player == 'X') player = 'O';
-  else player = 'X';
+  if(player == 'X') 
+    player = 'O';
+  else 
+    player = 'X';
 }
 
 
@@ -234,7 +247,6 @@ int main(void) {
   printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
   draw_board_options();
   draw_board(check_if_win());
-  printf("This is a test in order to try committing changes to git!");
 
   return 0;
 }
