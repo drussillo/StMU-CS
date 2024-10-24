@@ -231,8 +231,19 @@ int check_for_end(void) {  // returns wintype in tenths and coord number in unit
 
 
 
-//void take_turn_computer(void) {
-//}
+// can make 3 in a row
+// block an opponents 3 in a row
+// make 2 in a row
+// place in middle if available
+// place in random available spot
+
+int* find_best_move(void) {
+  for(row = 0; row < 3; row++) {
+    if((ttt[row][0] != ' ' && (ttt[row][0] == ttt[row][1] || ttt[row][0] == ttt[row][2]) || ttt[row][1] != ' ' && ttt[row][1] == ttt[row][2])) {
+
+    }
+  }
+}
 
 
 
