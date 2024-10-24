@@ -16,7 +16,7 @@ char ttt[3][3];
 char player = 'X';
 int row;
 int col;
-int moves = 0;
+int moves;
 
 
 
@@ -129,6 +129,7 @@ void clear_board(void) {
       ttt[row][col] = ' ';
     }
   }
+  moves = 0;
 }
 
 
@@ -140,7 +141,7 @@ void take_turn(void) {
   int y = 0;
 
   while(position_valid == 0) {
-    printf("\nIt's %c's turn. Choose an empty field:  ", player);
+    printf("\nIt's %c's turn. Choose an empty field (1-9):  ", player);
     scanf("%d", &position);
     position_valid = 1;
     switch(position) {
@@ -208,7 +209,7 @@ void reassign_player(void) {
 
 
 
-int check_if_win(void) {  // returns wintype in tenths and coord number in units
+int check_for_end(void) {  // returns wintype in tenths and coord number in units
   int i;
 
   for(i = 0; i < 3; i++) {
@@ -230,23 +231,35 @@ int check_if_win(void) {  // returns wintype in tenths and coord number in units
 
 
 
+//void take_turn_computer(void) {
+//}
+
+
+
 int main(void) { 
   char input;
+  char restart;
 
-  printf("\nWelcome to TicTacToe! X goes first. \nPress enter to start!\n");
-  scanf("%c", &input);
-  clear_board();
-  while(check_if_win() == 0) {
+  do {
+    printf("\nWelcome to TicTacToe! X goes first. \nPress enter to start!\n");
+    scanf("%c", &input);
+    clear_board();
+    while(check_for_end() == 0) {
+      printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+      draw_board_options();
+      draw_board(0);
+      take_turn();
+      reassign_player();
+    }
+    reassign_player();
     printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
     draw_board_options();
-    draw_board(0);
-    take_turn();
-    reassign_player();
-  }
-  reassign_player();
-  printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-  draw_board_options();
-  draw_board(check_if_win());
+    draw_board(check_for_end());
+    scanf("%c", &input);
+    printf("Would you like to restart?  (Y/N)");
+    scanf("%c", &restart);
+    scanf("%c", &input);
+  } while(restart == 'y' || restart == 'Y');
 
   return 0;
 }
