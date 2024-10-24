@@ -31,8 +31,8 @@ void draw_board_options(void) {
 
 void draw_board(int winstate) {
   int i;
-  int wintype = winstate / 10;
-  int wincoord = winstate - winstate / 10 * 10;
+  int wintype = winstate / 10;  // relies on truncating
+  int wincoord = winstate - winstate / 10 * 10;  // relies on truncating
 
   for(row = 0; row < 3; row++) {  // iterate through rows
     for(i = 0; i < 5; i++) {  // iterate through character lines within the row
