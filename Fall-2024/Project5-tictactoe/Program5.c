@@ -12,15 +12,15 @@
 
 #include <stdio.h>
 
-char ttt[3][3];
-char player = 'X';
-int row;
-int col;
-int moves;
+char ttt[3][3];  // array represents board
+char player = 'X';  // current player: either X or O
+int row;  // variable used for loops and more
+int col;  // variable used for loops and more
+int moves;  // tracks number of moves
 
 
 
-void draw_board_options(void) {
+void draw_board_options(void) {  // draws equivalency of numbers [1-9] to places on board
   printf("\n"
          "_1_|_2_|_3_\n"
          "_4_|_5_|_6_\n"
@@ -29,7 +29,7 @@ void draw_board_options(void) {
 
 
 
-void draw_board(int winstate) {
+void draw_board(int winstate) {  // draws board and current status. adds lines based on winstate
   int i;
   int wintype = winstate / 10;  // relies on truncating
   int wincoord = winstate - winstate / 10 * 10;  // relies on truncating
@@ -114,7 +114,7 @@ void draw_board(int winstate) {
       printf("\n");  // newline between each line in row
     }
   }
-  if(wintype == 5) {
+  if(wintype == 5) {  // if it's a tie
     printf("\nTie! \n\n");
   } else if(wintype != 0) {
     printf("\n%c won! \n\n", player);
@@ -123,28 +123,28 @@ void draw_board(int winstate) {
 
 
 
-void clear_board(void) {
-  for(row = 0; row < 3; row++) {
-    for(col = 0; col < 3; col++) {
+void clear_board(void) {  // clears board
+  for(row = 0; row < 3; row++) {  // iterate through rows
+    for(col = 0; col < 3; col++) {  // iterate through columns
       ttt[row][col] = ' ';
     }
   }
-  moves = 0;
+  moves = 0;  // reset moves
 }
 
 
 
-void take_turn(void) {
+void take_turn(void) {  // lets current player take turn and checks for valid move
   int position;
   int position_valid = 0;
   int x = 0;
   int y = 0;
 
-  while(position_valid == 0) {
-    printf("\nIt's %c's turn. Choose an empty field (1-9):  ", player);
+  while(position_valid == 0) {  // check for valid move
+    printf("\nIt's %c's turn. Choose an empty field (1-9):  ", player);  // prints instructions
     scanf("%d", &position);
-    position_valid = 1;
-    switch(position) {
+    position_valid = 1;  // assumes valid
+    switch(position) {  // sets coords based on position number
       case 1: 
         x = 0; 
         y = 0; 
@@ -181,11 +181,11 @@ void take_turn(void) {
         x = 2; 
         y = 2; 
         break;
-      default: 
+      default:  // means position is invalid because not in [1-9]
         position_valid = 0;
         break;
     }
-    if(ttt[x][y] == ' ' && position_valid == 1) {
+    if(ttt[x][y] == ' ' && position_valid == 1) {  // check if spot is free
       ttt[x][y] = player;
     } else {
       position_valid = 0;
@@ -200,7 +200,7 @@ void take_turn(void) {
 
 
 
-void reassign_player(void) {
+void reassign_player(void) {  // switches player between X and O
   if(player == 'X') 
     player = 'O';
   else 
@@ -210,9 +210,10 @@ void reassign_player(void) {
 
 
 int check_for_end(void) {  // returns wintype in tenths and coord number in units
+  // stores two single digit ints in double digit int: 2, 4 -> 24
   int i;
 
-  for(i = 0; i < 3; i++) {
+  for(i = 0; i < 3; i++) {  // i is which row or column the win is on
     if(ttt[i][0] != ' ' && ttt[i][0] == ttt[i][1] && ttt[i][1] == ttt[i][2]) {
       return 10 + i;  // wintype 1 is horizontal win
     } else if(ttt[0][i] != ' ' && ttt[0][i] == ttt[1][i] && ttt[1][i] == ttt[2][i]) {
@@ -238,9 +239,18 @@ int check_for_end(void) {  // returns wintype in tenths and coord number in unit
 // place in corner
 // place in available spot
 
-int* find_best_move(void) {
+void take_turn_cpu(void) {
   for(row = 0; row < 3; row++) {
-    if((ttt[row][0] != ' ' && (ttt[row][0] == ttt[row][1] || ttt[row][0] == ttt[row][2]) || ttt[row][1] != ' ' && ttt[row][1] == ttt[row][2])) {
+    for(col = 0; col < 3; col++) {
+      if(ttt[row][col] == ' ') {
+        ttt[row][col] == 'O';
+        if(check_for_end() == 0) {
+          ttt[row][col] == 'X';
+          if(check_for_end == 0) {
+            ttt[row][col] = ' ';
+          }
+        }
+      }
     }
   }
 }
@@ -248,7 +258,7 @@ int* find_best_move(void) {
 
 
 int main(void) { 
-  char input;
+  char input;  // user input. used for capturing newlines
   char restart;
 
   do {
@@ -260,7 +270,11 @@ int main(void) {
       draw_board_options();
       draw_board(0);
       take_turn();
+
+      take_turn_cpu();
+      /*
       reassign_player();
+      */
     }
     reassign_player();
     printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
