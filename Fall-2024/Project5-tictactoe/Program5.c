@@ -246,11 +246,12 @@ void take_turn_cpu(void) {
         ttt[row][col] == 'O';
         if(check_for_end() == 0) {
           ttt[row][col] == 'X';
-          if(check_for_end == 0) {
-            ttt[row][col] = ' ';
+          if(check_for_end() == 0) {
+            ttt[row][col] = 'O';
           }
         }
       }
+      break;
     }
   }
 }
@@ -260,21 +261,35 @@ void take_turn_cpu(void) {
 int main(void) { 
   char input;  // user input. used for capturing newlines
   char restart;
+  int gamemode = 0;
 
   do {
-    printf("\nWelcome to TicTacToe! X goes first. \nPress enter to start!\n");
-    scanf("%c", &input);
+    printf("\nWelcome to TicTacToe! First to get three in a row, column, or diagonal wins! X goes first. \n");
+    while(gamemode != 1 && gamemode != 2) {
+      printf(" ______________________ \n"
+             "|                      | \n"
+             "| 1 : Player vs Player | \n"
+             "|                      | \n"
+             "| 2 : Player vs CPU    | \n"
+             "|______________________| \n\n");
+      printf("Select a gamemode... ");
+      scanf("%d", &gamemode);
+      if(gamemode != 1 && gamemode != 2) {
+        printf("Invalid gamemode selection. Try again. \n\n");
+      }
+    }
     clear_board();
     while(check_for_end() == 0) {
       printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
       draw_board_options();
       draw_board(0);
-      take_turn();
 
-      take_turn_cpu();
-      /*
+      if(gamemode == 1 || player == 'X') {
+        take_turn();
+      } else {
+        take_turn_cpu();
+      }
       reassign_player();
-      */
     }
     reassign_player();
     printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
