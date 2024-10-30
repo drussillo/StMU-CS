@@ -261,10 +261,11 @@ void take_turn_cpu(void) {
 int main(void) { 
   char input;  // user input. used for capturing newlines
   char restart;
-  int gamemode = 0;
+  int gamemode;
 
   do {
     printf("\nWelcome to TicTacToe! First to get three in a row, column, or diagonal wins! X goes first. \n");
+    gamemode = 0;
     while(gamemode != 1 && gamemode != 2) {
       printf(" ______________________ \n"
              "|                      | \n"
