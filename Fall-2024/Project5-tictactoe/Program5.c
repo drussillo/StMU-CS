@@ -232,7 +232,92 @@ int check_for_end(void) {  // returns wintype in tenths and coord number in unit
 
 
 
-int check_for_adjacent(int coords) {
+int check_for_two_in_row(int coords) {
+  int r = coords / 10;  // extract row out of coords. relies on truncating.
+  int c = coords % 10;  // extract column out of coords
+  char current = ttt[r][c];  // current sign in cell
+  char opposite;
+  int i;  // to iterate (row and col already in use)
+  int has_current;  // keeps track if there's the current sign on the row/column/diagonal
+  int has_opposite;  // keeps track if there's an opposite to the current sign on the row/column/diagonal
+  
+  if(current == 'X') {  // find opposite
+    opposite = 'O';
+  } else {
+    opposite = 'X';
+  }
+
+  if(ttt[r][c] == ' ') {  // don't check if given cell is empty
+    return 0;
+  } else {
+    ttt[r][c] = ' ';
+  }
+
+  // assume coords are not (1, 1) because middle will be occupied either way
+  if(coords == 11) {
+    return 0;
+  }
+
+  // check each column on row
+  has_current = 0;
+  has_opposite = 0;
+  for(i = 0; i < 3; i++) {
+    if(ttt[r][i] == current) {
+      has_current = 1;
+    } else if(ttt[r][i] == opposite) {
+      has_opposite = 1; }
+  }
+  if(has_current == 1 && has_opposite == 0) {
+    ttt[r][c] = current;
+    return 1;
+  }
+
+  // check each row on column
+  has_current = 0;
+  has_opposite = 0;
+  for(i = 0; i < 3; i++) {
+    if(ttt[i][c] == current) {
+      has_current = 1;
+    } else if(ttt[i][c] == opposite) {
+      has_opposite = 1;
+    }
+  }
+  if(has_current == 1 && has_opposite == 0) {
+    ttt[r][c] = current;
+    return 1;
+  }
+
+  // check each cell on diagonal
+  has_current = 0;
+  has_opposite = 0;
+  for(i = 0; i < 3; i++) {
+    if(ttt[i][i] == current) {
+      has_current = 1;
+    } else if(ttt[i][i] == opposite) {
+      has_opposite = 1;
+    }
+  }
+  if(has_current == 1 && has_opposite == 0) {
+    ttt[r][c] = current;
+    return 1;
+  }
+
+  // check each cell on backward diagonal
+  has_current = 0;
+  has_opposite = 0;
+  for(i = 0; i < 3; i++) {
+    if(ttt[i][2 - i] == current) {
+      has_current = 1;
+    } else if(ttt[i][2 - i] == opposite) {
+      has_opposite = 1;
+    }
+  }
+  if(has_current == 1 && has_opposite == 0) {
+    ttt[r][c] = current;
+    return 1;
+  }
+
+  ttt[r][c] = current;
   return 0;
 }
 
@@ -248,6 +333,7 @@ int check_for_adjacent(int coords) {
 void take_turn_cpu(void) {
   int coords;
 
+  // 3 in a rows
   for(row = 0; row < 3; row++) {
     for(col = 0; col < 3; col++) {
       if(ttt[row][col] == ' ') {
@@ -255,38 +341,52 @@ void take_turn_cpu(void) {
         if(check_for_end() == 0) {  // if it's not the end
           ttt[row][col] = 'X';  // test with X for three in a rows
           if(check_for_end() == 0) {  // if it's not the end
-            ttt[row][col] = 'O';  // test with O for two in a rows
-            coords = row * 10 + col;  // store current single digit coords in double digit int
-            if(check_for_adjacent(coords) == 0) {  // if it's not two O in a row
-              ttt[row][col] = 'X';  // test with X
-              if(check_for_adjacent(coords) == 0) {  // if it's not two X in a row
-                ttt[row][col] = ' '; // clear because no special move
-              } else {
-                ttt[row][col] = 'O';
-                return;
-              }
-            } else return;
+            ttt[row][col] = ' ';  // clear because no 3 in a rows
           } else {
             ttt[row][col] = 'O';
+            moves++;
             return;
           }
-        } else return;
+        } else {
+          ttt[row][col] = 'O';
+          moves++;
+          return;
+        }
       }
     }
   }
+
+  // 2 in a rows
+  for(row = 0; row < 3; row++) {
+    for(col = 0; col < 3; col++) {
+      if(ttt[row][col] == ' ') {
+        ttt[row][col] = 'O';  // test with O for two in a rows
+        coords = row * 10 + col;  // store current single digit coords in double digit int
+        if(check_for_two_in_row(coords) == 0) {  // if it's not two O in a row
+            ttt[row][col] = ' '; // clear because no 2 in a rows
+        } else {
+          ttt[row][col] = 'O';  // set to O to two in a row
+          moves++;  // keep track of moves
+          return;
+        }
+      }
+    }
+  }
+
   if(ttt[1][1] == ' ') {  // if middle is available
     ttt[1][1] = 'O';  // set middle to 'O'
   } else if(ttt[0][0] == ' ') {  // if top left is available
     ttt[0][0] = 'O';
-  } else if(ttt[0][2] == ' ') {
-    ttt[0][2];
-  } else if(ttt[2][0] == ' ') {
+  } else if(ttt[0][2] == ' ') {  // if top right is available
+    ttt[0][2] = 'O';
+  } else if(ttt[2][0] == ' ') {  // if bottom left is available
     ttt[2][0] = 'O';
-  } else if(ttt[2][2] == ' ') {
+  } else if(ttt[2][2] == ' ') {  // if bottom right is available
     ttt[2][2] = 'O';
   } else {
     printf("How did you get here?");  // impossible outcome
   }
+  moves++;
 }
 
 
