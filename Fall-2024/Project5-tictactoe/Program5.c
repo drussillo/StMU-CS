@@ -384,7 +384,13 @@ void take_turn_cpu(void) {
   } else if(ttt[2][2] == ' ') {  // if bottom right is available
     ttt[2][2] = 'O';
   } else {
-    printf("How did you get here?");  // impossible outcome
+    for(row = 0; row < 3; row++) {
+      for(col = 0; col < 3; col++) {
+        if(ttt[row][col] == ' ') {
+          ttt[row][col] = 'O';  // pick first available spot
+        }
+      }
+    }
   }
   moves++;
 }
