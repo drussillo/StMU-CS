@@ -13,7 +13,7 @@
 #include <stdio.h>
 
 char ttt[3][3];  // array represents board
-char player = 'X';  // current player: either X or O
+char player;  // current player: either X or O
 int row;  // variable used for loops and more
 int col;  // variable used for loops and more
 int moves;  // tracks number of moves
@@ -398,6 +398,7 @@ int main(void) {
 
   do {
     printf("\nWelcome to TicTacToe! First to get three in a row, column, or diagonal wins! X goes first. \n");
+    player = 'X';
     gamemode = 0;
     while(gamemode != 1 && gamemode != 2) {
       printf(" ______________________ \n"
