@@ -232,6 +232,12 @@ int check_for_end(void) {  // returns wintype in tenths and coord number in unit
 
 
 
+int check_for_adjacent(int coords) {
+  return 0;
+}
+
+
+
 // can make 3 in a row
 // block an opponents 3 in a row
 // make 2 in a row
@@ -240,19 +246,46 @@ int check_for_end(void) {  // returns wintype in tenths and coord number in unit
 // place in available spot
 
 void take_turn_cpu(void) {
+  int coords;
+
   for(row = 0; row < 3; row++) {
     for(col = 0; col < 3; col++) {
       if(ttt[row][col] == ' ') {
-        ttt[row][col] == 'O';
-        if(check_for_end() == 0) {
-          ttt[row][col] == 'X';
-          if(check_for_end() == 0) {
+        ttt[row][col] = 'O';  // test with O for three in a rows
+        if(check_for_end() == 0) {  // if it's not the end
+          ttt[row][col] = 'X';  // test with X for three in a rows
+          if(check_for_end() == 0) {  // if it's not the end
+            ttt[row][col] = 'O';  // test with O for two in a rows
+            coords = row * 10 + col;  // store current single digit coords in double digit int
+            if(check_for_adjacent(coords) == 0) {  // if it's not two O in a row
+              ttt[row][col] = 'X';  // test with X
+              if(check_for_adjacent(coords) == 0) {  // if it's not two X in a row
+                ttt[row][col] = ' '; // clear because no special move
+              } else {
+                ttt[row][col] = 'O';
+                return;
+              }
+            } else return;
+          } else {
             ttt[row][col] = 'O';
+            return;
           }
-        }
+        } else return;
       }
-      break;
     }
+  }
+  if(ttt[1][1] == ' ') {  // if middle is available
+    ttt[1][1] = 'O';  // set middle to 'O'
+  } else if(ttt[0][0] == ' ') {  // if top left is available
+    ttt[0][0] = 'O';
+  } else if(ttt[0][2] == ' ') {
+    ttt[0][2];
+  } else if(ttt[2][0] == ' ') {
+    ttt[2][0] = 'O';
+  } else if(ttt[2][2] == ' ') {
+    ttt[2][2] = 'O';
+  } else {
+    printf("How did you get here?");  // impossible outcome
   }
 }
 
@@ -301,6 +334,7 @@ int main(void) {
     scanf("%c", &restart);
     scanf("%c", &input);
   } while(restart == 'y' || restart == 'Y');
+  printf("Thank you for playing! \n\n");
 
   return 0;
 }
