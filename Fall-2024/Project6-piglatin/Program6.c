@@ -15,7 +15,8 @@
 
 
 int check_if_vowel(char letter) {  // checks if parameter is a vowel or not
-  if(letter == 'a' || letter == 'e' || letter == 'i' || letter == 'o' || letter == 'u') {
+  if(letter == 'a' || letter == 'e' || letter == 'i' || letter == 'o' || letter == 'u' || 
+    letter == 'A' || letter == 'E' || letter == 'I' || letter == 'O' || letter == 'U') {
     return 1;
   } else {
     return 0;
@@ -73,7 +74,7 @@ int main(void) {
          "it stays the same with only 'way' appended at the end. Otherwise, the word will start \n"
          "with every letter from the first vowel to the end of the word, with then the initial \n"
          "consonants appended, followed by 'ay'. \n"
-         "Accepts sentences of max 80 characters per line. Loops until user inputs STOP as sentence. \n\n");
+         "Accepts sentences of max 80 characters per line, no punctuation. Loops until user inputs STOP as sentence. \n\n");
   while(strcmp(sentence, "stop") != 0 && strcmp(sentence, "Stop") != 0 && strcmp(sentence, "STOP") != 0) {
     printf("Input sentence here: \n");
     gets(sentence);
