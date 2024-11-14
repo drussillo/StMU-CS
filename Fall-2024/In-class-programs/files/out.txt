@@ -1,0 +1,1 @@
+The content from in.txt is "58". 
