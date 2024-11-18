@@ -1,0 +1,28 @@
+Davide Russillo                     Relation: Self 
+1 Camino Santa Maria                Birthday: June 7, 2006 
+San Antonio, Texas, 78228 USA       Age: 18
+
+Serena Manfreda                     Relation: Mother 
+Goethestrasse 15                    Birthday: August 21, 1978 
+Berlin, Berlin, 10625 Germany       Age: 46
+
+Roberto Russillo                    Relation: Father 
+Goethestrasse 15                    Birthday: May 28, 1976 
+Berlin, Berlin, 10625 Germany       Age: 48
+
+Dafne Russillo                      Relation: Sister 
+Goethestrasse 15                    Birthday: July 14, 2016 
+Berlin, Berlin, 10625 Germany       Age: 8
+
+Donato Manfreda                     Relation: Grandfather 
+Via I Maggio 25                     Birthday: December 17, 1939 
+Picerno, Potenza, 85055 Italy       Age: 84
+
+Lidia Caggiano                      Relation: Grandmother 
+Via I Maggio 25                     Birthday: December 12, 1951 
+Picerno, Potenza, 85055 Italy       Age: 72
+
+Rossella Manfreda                   Relation: Aunt 
+Corso Umberto I 37                  Birthday: April 2, 1972 
+Picerno, Potenza, 85055 Italy       Age: 52
+
