@@ -1,0 +1,2 @@
+The text from in.txt to out.txt is: 
+taking notes in class 
