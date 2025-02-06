@@ -23,11 +23,13 @@ int f_recursive(int z) {
 
 int main(void) {
   char restart = 'y';
-  int num;
+  int num = 0;
 
   while(restart == 'y' || restart == 'Y') {
-    printf("Enter positive integer value: ");
-    scanf("%d", &num);
+    while(num <= 0) {
+      printf("Enter positive integer value: ");
+      scanf("%d", &num);
+    }
     printf("f(%d) = %d  (non-recursive) \n", num, f_normal(num));
     printf("f(%d) = %d  (recursive) \n"), num, f_recursive(num);
     printf("Would you like to restart? (y/n) ");
