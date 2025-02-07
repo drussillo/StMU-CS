@@ -14,8 +14,7 @@ int f_normal(int x) {
 int f_recursive(int z) {
   if(z == 0) {
     return 7;
-  }
-  else {
+  } else {
     return f_recursive(z-1) + 8*z - 2;
   }
 }
@@ -31,7 +30,8 @@ int main(void) {
       scanf("%d", &num);
     }
     printf("f(%d) = %d  (non-recursive) \n", num, f_normal(num));
-    printf("f(%d) = %d  (recursive) \n"), num, f_recursive(num);
+    printf("f(%d) = %d  (recursive) \n", num, f_recursive(num));
+    num = 0;  // reset num
     printf("Would you like to restart? (y/n) ");
     scanf(" %c", &restart);
   }
