@@ -26,12 +26,11 @@ void add_node(void) {
   // set name
   printf("Enter name (will read up to 30 characters): ");
   fgets(current->name, 31, stdin);
-  if(current->name[29] == '\n') {  // if input is exactly 30
-    current->name[29] == '\0';
-  } else if(strlen(current->name) == 30) {  // if input is greater than 30
-    while(getchar() != '\n');  // clear input buffer
+  // remove newline
+  if(strcspn(current->name, "\n") == 30) {
+    while(getchar() != '\n');
   } else {
-    current->name[strlen(current->name)-1] = '\0';  // replace newline
+    current->name[strcspn(current->name, "\n")] = '\0';
   }
 
   // set space
@@ -113,7 +112,7 @@ void print_nodes(void) {
 
 
 int main(void) {
-  char selection = '0';  // add or delete
+  char selection[5] = "";  // add or delete
 
   printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
   printf("This program take videogames' names, required space, playtime, and price as input. \n"
@@ -121,18 +120,12 @@ int main(void) {
          "Press enter to continue \n");
   getchar();
 
-  while(selection != 'a' && selection != 'd' && selection != 'q') {
+  while(strcmp(selection, "done") != 0 && strcmp(selection, "Done") != 0 && strcmp(selection, "DONE") != 0) {
     print_nodes();
-    printf("What would you like to do? \n"
-           "Add Entry(a), Delete Entry(d), Quit(q)\n\n?..");
-    scanf(" %c", &selection);
-    getchar();
-
-    if(selection == 'a') {
-      print_nodes();
-      add_node();
-      selection = '0';
-    }
+    add_node();
+    print_nodes();
+    printf("Would you like to continue? \nType y for yes or done to quit. \n\n?..");
+    fgets(selection, 5, stdin);
   }
 
   return 0;

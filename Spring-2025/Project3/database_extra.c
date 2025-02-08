@@ -14,7 +14,12 @@ struct videogame {
   struct videogame *next;
 };
 struct videogame *head, *last, *current;
+
 int entries;  // length of list
+double total_space;
+int total_playtime;
+double total_price;
+
 
 
 void add_node(void) {
@@ -44,6 +49,7 @@ void add_node(void) {
       valid_value = 1;  // pass
     }
   }
+  total_space += current->space;
   valid_value = 0;  // reset valid_value
 
   // set playtime
@@ -56,6 +62,7 @@ void add_node(void) {
       valid_value = 1;  // pass
     }
   }
+  total_playtime += current->playtime;
   valid_value = 0;  // reset valid_value
 
   // set price
@@ -68,6 +75,7 @@ void add_node(void) {
       valid_value = 1;  // pass
     }
   }
+  total_price += current->price;
   valid_value = 0;  // reset valid_value
 
   while(getchar() != '\n');  // clear input buffer
@@ -85,8 +93,50 @@ void add_node(void) {
 }
 
 
+
+void delete_node(void) {
+  char target[31];
+  int value_in_list = 0;  // boolean default false
+  struct videogame *prev;  // tracks previous node
+
+  while(value_in_list == 0) {
+    printf("Enter name of target entry (type exit to go back): ");
+    fgets(target, 31, stdin);
+    if(strcspn(target, "\n") == 30) {
+      while(getchar() != '\n');
+    } else {
+      target[strcspn(target, "\n")] = '\0';
+    }
+    current = head;
+    if(strcmp(target, "exit") == 0) {
+      return;
+    } else if(strcmp(current->name, target) == 0) {
+      value_in_list = 1;
+      head = head->next;
+      free(current);
+    } else {
+      current = head->next;
+      prev = head;
+      while(current != NULL && strcmp(current->name, target) != 0) {
+        prev = current;
+        current = current->next;
+      }
+      if(current == NULL) {
+        value_in_list = 0;  // redundant for safety
+        printf("Item not present. Try again. \n");
+      } else {
+        value_in_list = 1;
+        prev->next = current->next;
+        free(current);
+      }
+    }
+  }
+}
+
+
+
 void print_nodes(void) {
-  char price_buffer[8];
+  char price_buffer[8];  // used for formatting price with $ sign in front
 
   printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
   printf("CURRENT DATA (%d ENTRIES): \n", entries);
@@ -107,9 +157,19 @@ void print_nodes(void) {
       printf("|________________________________|____________|__________|_________| \n");
       current = current->next;
     }
+    // print total values
+    sprintf(price_buffer, "$%.2f", total_price);
+    printf("|                                | \n"
+           "| Total entries: %12d    | \n"
+           "| req. space: %15.1f GB | \n"
+           "| playtime: %17d h  |  \n"
+           "| price: %20s    | \n"
+           "|________________________________|", 
+           entries, total_space, total_playtime, price_buffer);
   }
   printf("\n\n");
 }
+
 
 
 int main(void) {
@@ -131,6 +191,10 @@ int main(void) {
     if(selection == 'a') {
       print_nodes();
       add_node();
+      selection = '0';
+    } else if(selection == 'd') {
+      print_nodes();
+      delete_node();
       selection = '0';
     }
   }
