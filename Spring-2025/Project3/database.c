@@ -27,7 +27,7 @@ void add_node(void) {
   printf("Enter name (will read up to 30 characters): ");
   fgets(current->name, 31, stdin);
   // remove newline
-  if(strcspn(current->name, "\n") == 30) {
+  if(strcspn(current->name, "\n") == 30) {  // if strcspn returns length, input exceeds limit
     while(getchar() != '\n');
   } else {
     current->name[strcspn(current->name, "\n")] = '\0';
