@@ -2,16 +2,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct Guess7 {
+struct Guess {
   int num;
-  struct Guess7 *left;
-  struct Guess7 *right;
+  struct Guess *left;
+  struct Guess *right;
 };
 
-void init_tree(struct Guess7 *root, int depth) {
-  void init_tree_helper(struct Guess7 *current, int depth, int current_depth) {
-    current->left = malloc(sizeof(struct Guess7));
-    current->right = malloc(sizeof(struct Guess7));
+void init_tree(struct Guess *root, int depth) {
+  void init_tree_helper(struct Guess *current, int depth, int current_depth) {
+    current->left = malloc(sizeof(struct Guess));
+    current->right = malloc(sizeof(struct Guess));
     if(current_depth < depth) {
       init_tree_helper(current->left, depth, current_depth+1);
       init_tree_helper(current->right, depth, current_depth+1);
@@ -20,8 +20,8 @@ void init_tree(struct Guess7 *root, int depth) {
   init_tree_helper(root, depth, 0);
 }
 
-void populate_tree(struct Guess7 *root, int depth) {
-  void populate_tree_helper(struct Guess7 *current, int depth, int current_depth, int set_num) {
+void populate_tree(struct Guess *root, int depth) {
+  void populate_tree_helper(struct Guess *current, int depth, int current_depth, int set_num) {
     current->num = set_num;
     if(current->left != NULL && current->right != NULL) {
       populate_tree_helper(current->left, depth, current_depth+1, set_num - (1 << (depth-1 - current_depth)));
@@ -34,7 +34,7 @@ void populate_tree(struct Guess7 *root, int depth) {
   populate_tree_helper(root, depth, 0, root_value);
 }
 
-void print_tree_inorder(struct Guess7 *current) {
+void print_tree_inorder(struct Guess *current) {
   if(current->left != NULL && current->right != NULL) {
     print_tree_inorder(current->left);
     printf("%d ", current->num);
@@ -42,18 +42,19 @@ void print_tree_inorder(struct Guess7 *current) {
   }
 }
 
-void guess_number(void);
+void guess_number(struct Guess *root, int depth) {}
+
 
 int main(void) {
   // initialize tree
-  struct Guess7 *root = malloc(sizeof(struct Guess7));
-  int depth = 5;
+  struct Guess *root = malloc(sizeof(struct Guess));
+  int depth = 2;
   init_tree(root, depth);
   populate_tree(root, depth);
   print_tree_inorder(root);
   printf("\n\n");
+  guess_number(root, depth);
 
-  printf("Input number between 1 and 7. Program will try to guess it.\n");
 
   return 0;
 }
