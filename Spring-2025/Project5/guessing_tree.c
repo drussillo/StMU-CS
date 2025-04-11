@@ -90,6 +90,22 @@ void populate_tree(struct Node *root) {
 }
 
 
+void print_preorder(struct Node *current) {
+  // print current value
+  printf("%d ", current->value);
+
+  // iterate on left node
+  if(current->left != NULL) {
+    print_preorder(current->left);
+  }
+
+  // iterate on right node
+  if(current->right!= NULL) {
+    print_preorder(current->right);
+  }
+}
+
+
 void print_inorder(struct Node *current) {
   // iterate on left node
   if(current->left != NULL) {
@@ -103,6 +119,22 @@ void print_inorder(struct Node *current) {
   if(current->right!= NULL) {
     print_inorder(current->right);
   }
+}
+
+
+void print_postorder(struct Node *current) {
+  // iterate on left node
+  if(current->left != NULL) {
+    print_postorder(current->left);
+  }
+
+  // iterate on right node
+  if(current->right!= NULL) {
+    print_postorder(current->right);
+  }
+
+  // print current value
+  printf("%d ", current->value);
 }
 
 
@@ -152,6 +184,13 @@ int main(void) {
   struct Node *root = malloc(sizeof(struct Node));
   init_tree(root);
   populate_tree(root);
+
+  print_preorder(root);
+  printf("\n");
+  print_inorder(root);
+  printf("\n");
+  print_postorder(root);
+  printf("\n\n");
 
   printf("Think of a number between 1 and 20 and I will try to guess it.\n"
          "Press enter to start ...");
