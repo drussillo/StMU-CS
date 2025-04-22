@@ -1,0 +1,41 @@
+*** Include ***
+
+Include is a C preprocessor directive. It serves to incorporate
+the contents of another file into the current one. Usually, it
+is used to include header files from the C standard library or
+user defined ones. Include is usually placed at the start of a
+C file, before any of the other code. Included files can either
+be in the same directory as the file that includes them or can
+be added to the preprocessor using different flags depending
+on the compiler. Common header files are 
+stdio.h     // file and input/output functions and types
+stdlib.h    // memory allocation, random
+string.h    // see string function tutor
+stdbool.h   // boolean type
+
+The syntax of include is 
+     #include <(C standard library file)>
+     #include "(user defined file)"
+
+Do you want to see examples (type y for yes)?
+y
+
+
+
+*** Include Examples ***
+
+     #include <stdio.h>
+This instance of include serves to add all the functions located
+in the standard library stdio.h file to the current source code.
+It will allow the code to use functions such as printf, and types
+such as FILE.
+
+     #include "myheader.h"
+In this instance, include takes all the contents from myheader.h,
+which is completely user defined.
+
+     #include "module1.h"
+Here, include is used to incorporate all the contents from a user
+defined module. This module can be part of a bigger project, where
+code separation and modularity become essential. Include allows
+developers to make their code as modular as they want.
