@@ -1,4 +1,4 @@
-*** Main Paramters ***
+*** Main Parameters ***
 
 Main functions in C can accept two different parameters. These
 are argc and argv. These are meant to be used for command-line
