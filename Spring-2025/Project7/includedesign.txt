@@ -8,10 +8,18 @@ C file, before any of the other code. Included files can either
 be in the same directory as the file that includes them or can
 be added to the preprocessor using different flags depending
 on the compiler. Common header files are 
-stdio.h     // file and input/output functions and types
-stdlib.h    // memory allocation, random
-string.h    // see string function tutor
-stdbool.h   // boolean type
+     stdio.h     // file and input/output functions and types
+     stdlib.h    // memory allocation, random
+     string.h    // see string function tutor
+     stdbool.h   // boolean type
+  math.h   // advanced math functions
+Header files are text files, typically ending with the .h extension.
+While they can contain full C code and definitions, they usually only
+contain declarations. The point is to provide different source files
+with public declarations for functions, variables, types, and more.
+The actual definitions are usually in a corresponding c file. The C
+code is then shared and used across all files that include the header,
+without recompiling the definitions each time.
 
 The syntax of include is 
      #include <(C standard library file)>

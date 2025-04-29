@@ -18,16 +18,18 @@ void MainParameters(void) {
          "       // code\n"
          "       return 0;\n"
          "     }\n\n"
+         "Use argc to get the amount of arguments.\n"
+         "Use argv to get the arguments as strings.\n\n"
          "Do you want to see examples (type y for yes)?");
   examples = getchar();
   if(examples == 'y' || examples == 'Y') {
     printf("\n\n\n"
            "*** Main Parameters Examples ***\n\n"
-           "     ./test.exe first second third\n"
-           "This is an example of executing a C program from the command-line\n"
-           "(bash), while passing three arguments. In this case, argc would be\n"
-           "equal to 4, while argv[0] would be ./test, argv[1] would be first,\n"
-           "argv[2] would be second, and so on.\n\n"
+           "     test.exe first second third\n"
+           "This is an example of executing a C program from the command-line,\n"
+           "while passing three arguments. In this case, argc would be equal\n"
+           "to 4, while argv[0] would be test.exe, argv[1] would be first,\n"
+           "argv[2] would be second, and argv[3] would be third.\n\n"
            "     printf(\"%%s\\n\", argv[0]);\n"
            "This code is printing the first argument in the argv parameter.\n"
            "This is going to be the executable name, so if the file is test.c\n"

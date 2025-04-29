@@ -15,17 +15,20 @@ The syntax of main parameters is
        return 0;
      }
 
+Use argc to get the amount of arguments.
+Use argv to get the arguments as strings.
+
 Do you want to see examples (type y for yes)?
 y
 
 
 *** Main Parameters Examples ***
 
-     ./test.exe first second third
-This is an example of executing a C program from the command-line
-(bash), while passing three arguments. In this case, argc would be
-equal to 4, while argv[0] would be ./test, argv[1] would be first,
-argv[2] would be second, and so on.
+     test.exe first second third
+This is an example of executing a C program from the command-line,
+while passing three arguments. In this case, argc would be equal
+to 4, while argv[0] would be test.exe, argv[1] would be first,
+argv[2] would be second, and argv[3] would be third.
 
      printf("%s\n", argv[0]);
 This code is printing the first argument in the argv parameter.
