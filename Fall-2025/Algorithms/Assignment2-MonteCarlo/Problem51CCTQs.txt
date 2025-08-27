@@ -1,0 +1,37 @@
+Problem #51 CCTQs
+ 1. pointer-to function AreEQ()
+
+ 2. Concerning data type signed long long int
+    a. 8 bytes = 64 bits
+    b. T because signed is the default when signed/unsigned are not specified
+    c. %lld
+    d. [ -2^63,2^63-1 ]
+
+ 3. the i-is-1 case is handled *outside* the loop as follows
+      RunOneTrial(&count,n,AreEQ);
+      minCount = count;
+      maxCount = count;
+      sumCount = count;
+    note that the general case (handled by the for-statement body) is identified 
+    with i in [ 2,T ].
+
+ 4. IYHO concerning dynamic allocation from the heap with malloc()
+
+ 5. concerning the statement *count = 0;
+    a. * has higher precedence
+    b. F because only = has a side-effect
+    c. T because = and * have RL associativity
+    d. * arity is 1, = arity is 2
+
+ 6. IYHO concerning which is "better", EQ(...) or (*EQ)(...)?
+
+ 7. when the resource leak occurs too often (for example, when it occurs in a loop),
+       it is possible to run-out-of the resource
+
+ 8. F, but when the body contains more than 1 statement, the the {} are 
+       *absolutely* required
+
+ 9. a uniformly-distributed random integer chosen from the closed interval [ 1,n ]
+
+10. it is the i-th integer in xs[], xs[i], that is being investigated to see if it
+       already exists in xs[1:i-1]
