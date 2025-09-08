@@ -1,0 +1,46 @@
+ 1. D: 4
+
+ 2. D: 
+
+ 3. E: none of these
+ 
+ 4. D: function prototypes, not B: function headers because of semicolon.
+ 
+ 5. B: stdio.h
+
+ 6. A: 0
+
+ 7. 
+    void NextPrime(int *x)
+    //--------------------------------------------------
+    {
+      bool IsPrime(const int x);
+
+      do
+        (*x)++;
+      while ( !IsPrime(*x) );
+    }
+
+ 8. The highlighted section of the for loop header is the for loop conditional.
+    The condition makes sure the body only runs until i's value surpasses the
+    square root of x or until a divisor has been found.
+
+ 9. D: %
+
+10. C: ?
+
+11. C: unbounded pre-test
+
+12. assert(m != 0 || n != 0)
+
+13. assert(m != 0 && n != 0)
+
+14. 
+    //--------------------------------------------------
+    bool AreCoprime(const int m,const int n)
+    //--------------------------------------------------
+    {
+      return GCD1(m, n) == 1;
+    }
+
+15. T
