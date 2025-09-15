@@ -1,0 +1,39 @@
+1. "The science without the art is likely to be ineffective; the art 
+   without the science is certain to be inaccurate." (Page 4)
+
+   Having scientific knowledge without the capability and willingness 
+   to apply it, aka art, will likely not give you a good result. At 
+   the same time, art without that base knowledge or science is going 
+   to be functionally useless. The point is that art and science are 
+   interdependent.
+
+
+2. "Our pleasure is significantly enhanced when we accomplish something 
+   with limited tools." (Page 7)
+
+   Working with lower level languages, active resource management, or 
+   making something ourselves is generally much more satisfying than 
+   using a library or built-in function that does all the work for us.
+
+
+3. The use of our large-scale machines with their fancy operating 
+   systems and languages doesn’t really seem to engender any love 
+   for programming, at least not at first. (Page 8)
+   
+   Interacting with a computer on a very high level, such as through
+   modern operating systems, is not very engaging or interesting from 
+   a programming or computer science standpoint.
+
+
+To my understanding, idea 3 is essentially about how user friendliness distances 
+users from computer science. In order to interact with old operating systems such 
+as MSDOS, users need to learn a lot more compared to Windows. Modern operating 
+systems expose their users to far fewer computer science concepts, which makes it 
+unlikely for them to develop a deeper interest. Basically, too much abstraction 
+damages the relationship between the user and the actual system. This also applies 
+to other things, such as hardware and programming languages.
+I found this idea to be impressive, given that it is still very relevant more than 
+50 years after the publication of this paper. Most users of modern technology have 
+no idea about what is going on under the hood, yet they interact with it every day.
+Technology is only going to get more simplified, and with that, the general public 
+will be exposed to fewer computer science concepts.
