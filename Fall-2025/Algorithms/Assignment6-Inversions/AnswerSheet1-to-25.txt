@@ -1,1 +1,21 @@
-1. 
+1. 4 1 2 3 has 3 inversions; 4 3 2 1 has 6 inversions.
+
+2. C: 2
+
+3. A: left-to-right
+
+4. C: n^2
+
+5. D: 10^12
+
+6. n = 15 -> 3; n = 150 -> 4
+
+7. A: the integer 5 right-justified in a 3 characted field
+
+8. | % | 8 | c | \0 |
+
+9. D: Associativity
+
+10. If DISPLAYARRAY is defined before this macro if statement, the DisplayArraySlice function will be called.
+    The value of DISPLAYARRAY does not matter. What matters if it is currently defined.
+
